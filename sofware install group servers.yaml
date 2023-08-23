@@ -1,0 +1,26 @@
+---
+- name: Instalar JDK, Python e Nginx em servidores Red Hat 9
+  hosts: linux_Portugal  # Grupo de hosts onde o playbook será executado
+  become: true  # Executar com privilégios de superusuário (root)
+
+  tasks:
+    - name: Instalar JDK
+      dnf:
+        name: java-latest-openjdk  # Nome do pacote JDK
+        state: latest  # Garantir que esteja na versão mais recente
+      tags:
+        - jdk_install  # Marcador para tarefa de instalação do JDK
+
+    - name: Instalar Python
+      dnf:
+        name: python3  # Nome do pacote Python
+        state: latest  # Garantir que esteja na versão mais recente
+      tags:
+        - python_install  # Marcador para tarefa de instalação do Python
+
+    - name: Instalar Nginx
+      dnf:
+        name: nginx  # Nome do pacote Nginx
+        state: latest  # Garantir que esteja na versão mais recente
+      tags:
+        - nginx_install  # Marcador para tarefa de instalação do Nginx
